@@ -10,5 +10,6 @@
 /bin
 /routes
 /tasks
+/public
 /config.js
 *.env

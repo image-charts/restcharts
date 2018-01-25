@@ -1,14 +1,14 @@
 import bunyan from 'bunyan'
 import GeoIp from '../libs/GeoIp'
 import Slack from '../libs/Slack'
-// import RedisHelper from '../libs/RedisHelper'
+import ChartExamples from '../libs/ChartExamples'
 import config from '../config'
 
 // const redisClient = new RedisHelper()
 const log = bunyan.createLogger(config.logger.options)
 
 export default async function Index(req, res) {
-  res.render('index', {})
+  res.render('index', { data: { types: ChartExamples }})
 
   // try {
   //   let realClientIpAddress = (req.headers['x-forwarded-for'] || req.ip).split(',')

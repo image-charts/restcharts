@@ -12,15 +12,6 @@ export default {
     host:           process.env.HOSTNAME || "http://localhost:8080"
   },
 
-  aws: {
-    access_key:     process.env.AWS_ACCESS_KEY_ID,
-    access_secret:  process.env.AWS_SECRET_ACCESS_KEY,
-
-    s3: {
-      bucket: process.env.AWS_S3_BUCKET || 'restcharts'
-    }
-  },
-
   slack: {
     webhookUrl: process.env.SLACK_WEBHOOK_URL
   },

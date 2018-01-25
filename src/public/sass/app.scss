@@ -1,0 +1,33 @@
+@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+.small-width {
+  max-width: 600px;
+}
+
+.card {
+  code {
+    font-size: 9px;
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .card-block {
+    padding: 0.7rem;
+  }
+}
+
+.margin-vert-medium {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.chart-example {
+  // background-repeat: 'no-repeat';
+  // background-position: 'bottom';
+  // background-size: 'contain';
+
+  &.card-img-top {
+    max-height: 150px;
+    background: #f8f8f8;
+  }
+}

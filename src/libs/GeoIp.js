@@ -1,4 +1,4 @@
-import request from 'request'
+import request from 'request-promise-native'
 
 export default {
   request: request.defaults({ baseUrl: 'http://freegeoip.net' }),
@@ -16,14 +16,8 @@ export default {
   //   longitude: -84.2507,
   //   metro_code: 524
   // }
-  location(ipAddress) {
-    return new Promise((resolve, reject) => {
-      this.request.get(`/json/${ipAddress}`, (err, httpResponse, body) => {
-        if (err) return reject(err)
-        if (httpResponse.statusCode >= 400) return reject(body)
-
-        resolve(JSON.parse(body))
-      })
-    })
+  async location(ipAddress) {
+    const body = await this.request.get(`/json/${ipAddress}`)
+    return JSON.parse(body)
   }
 }

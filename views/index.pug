@@ -6,9 +6,42 @@ html
     meta(http-equiv="X-UA-Compatible",content="IE=edge")
     meta(name="viewport",content="width=device-width")
 
-    script(type='text/javascript').
-      LOCAL_DATA=!{JSON.stringify(data||{})}
+    link(href="/public/css/app.css",rel="stylesheet")
 
     title REST Charts
   body
-    div I'm here!
+    div.container
+      div.text-center.header
+        h1 REST Charts
+        div
+          small Generate charts simpler
+
+      hr.small-width
+
+      div.container.text-center.small-width
+        h2 What is it?
+        div.
+          REST Charts lets you generate dynamic charts through a REST-like URL
+          and query string parameters that includes information such
+          as the data, chart colors, area opacity, etc.
+
+      hr.small-width
+
+      h2(id='Examples') Examples
+      div.container.small-width
+        each type in data.types
+          div
+            h3(id=type.name)
+              a(href='#' + type.name)= type.name
+            div.row
+              each example in type.examples
+                div.col-xs-12.col-md-4
+                  div.card.margin-vert-medium
+                    - //div.card-img-top.chart-example(style="background-image:url('" + example.url + "')")
+                    img.card-img-top.chart-example(src=example.url)
+                    div.card-block
+                      div.card-title
+                        a(href=example.url,target="_blank")= example.name
+                      p.card-text
+                        div.d-flex.flex-column.justify-content-center.align-items-center
+                          code= example.url
