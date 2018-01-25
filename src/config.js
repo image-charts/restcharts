@@ -21,6 +21,10 @@ export default {
     }
   },
 
+  slack: {
+    webhookUrl: process.env.SLACK_WEBHOOK_URL
+  },
+
   logger: {
     options: {
       name:   appName,

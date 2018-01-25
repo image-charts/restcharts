@@ -1,13 +1,17 @@
 import fs from 'fs'
 import request from 'request-promise-native'
 
-export default async function Highcharts(req, res) {
+export default async function Chart(req, res) {
   try {
+    const routeParams = req.params
+    const type        = routeParams.type
+
     const body        = req.query || {}
     const chartData   = (body.data || '').split(',')
     const chartColor  = (body.hexcolor) ? `#${body.hexcolor}` : null
     const height      = (body.height) ? parseInt(body.height) : null
     const width       = (body.width) ? parseInt(body.width) : null
+    const fillOpacity = (body.opacity) ? parseFloat(body.opacity) : null
     const baseUrl     = 'http://export.highcharts.com'
 
     if (chartData.length <= 1)
@@ -21,7 +25,13 @@ export default async function Highcharts(req, res) {
         asyncRendering: false,
         callback: "",
         constr: "Chart",
-        infile: getChartConfig(chartData, { color: chartColor, height: height, width: width }),
+        infile: getChartConfig(chartData, {
+          type: type,
+          color: chartColor,
+          opacity: fillOpacity,
+          height: height,
+          width: width
+        }),
         scale: false,
         styledMode: false,
         type: "image/png",
@@ -40,20 +50,22 @@ export default async function Highcharts(req, res) {
 }
 
 function getChartConfig(data, options={}) {
-  const color = options.color
-  const height = options.height
-  const width = options.width
+  const type    = options.type || 'area'
+  const color   = options.color
+  const height  = options.height
+  const width   = options.width
+  const opacity = options.opacity
 
   return {
     chart: {
-      type: 'area',
+      type: type,
       margin: [ 0, 0, 0, 0 ],
       height: height,
       width: width
     },
     plotOptions: {
       area: {
-        fillOpacity: 0.1
+        fillOpacity: opacity
       }
     },
     credits: {
@@ -75,7 +87,7 @@ function getChartConfig(data, options={}) {
       text: '',
     },
     series: [{
-      lineWidth: 0,
+      lineWidth: 2,
       color: color,
       data: data.map(d => ({ y: parseInt(d), marker: { enabled: false }}))
     }]

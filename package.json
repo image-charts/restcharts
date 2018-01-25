@@ -30,7 +30,6 @@
     "bunyan": "1.5.1",
     "express": "^4.15.2",
     "forever-monitor": "^1.7.1",
-    "github": "^13.1.0",
     "gulp": "latest",
     "gulp-babel": "latest",
     "gulp-concat": "^2.6.0",

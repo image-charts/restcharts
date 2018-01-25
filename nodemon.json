@@ -3,6 +3,6 @@
     "src/**/*"
   ],
   "events": {
-    "restart": "gulp prep-dev"
+    "restart": "gulp build"
   }
 }
