@@ -14,7 +14,7 @@ html
       div.text-center.header
         h1 REST Charts
         div
-          small Generate charts simpler
+          small Generate charts easier than ever!
 
       hr.small-width
 
@@ -24,10 +24,16 @@ html
           REST Charts lets you generate dynamic charts through a REST-like URL
           and query string parameters that includes information such
           as the data, chart colors, area opacity, etc.
+        div.card.margin-vert-xlarge
+          div.card-block
+            div As easy as...
+            div
+              code(style="font-size:14px;")
+                a(href=data.host + '/chart/column?data=5,1,2,9,8,3,6')= data.host + '/chart/column?data=5,1,2,9,8,3,6'
 
       hr.small-width
 
-      h2(id='Examples') Examples
+      h2.text-center(id='Examples') Examples
       div.container.small-width
         each type in data.types
           div

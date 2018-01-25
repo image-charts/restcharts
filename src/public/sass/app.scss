@@ -1,7 +1,26 @@
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
 
+.margin-vert-medium {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.margin-vert-large {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.margin-vert-xlarge {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 .small-width {
   max-width: 600px;
+}
+
+.header {
+  margin-top: 50px;
 }
 
 .card {
@@ -14,11 +33,6 @@
   .card-block {
     padding: 0.7rem;
   }
-}
-
-.margin-vert-medium {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .chart-example {

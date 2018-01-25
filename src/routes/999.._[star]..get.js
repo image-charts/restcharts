@@ -8,7 +8,7 @@ import config from '../config'
 const log = bunyan.createLogger(config.logger.options)
 
 export default async function Index(req, res) {
-  res.render('index', { data: { types: ChartExamples }})
+  res.render('index', { data: { host: config.server.host, types: ChartExamples }})
 
   // try {
   //   let realClientIpAddress = (req.headers['x-forwarded-for'] || req.ip).split(',')
