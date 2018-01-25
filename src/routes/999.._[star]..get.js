@@ -17,18 +17,21 @@ export default async function Index(req, res) {
       }
     })
 
-
-    let realClientIpAddress = (req.headers['x-forwarded-for'] || req.ip).split(',')
-    realClientIpAddress = realClientIpAddress[realClientIpAddress.length - 1]
-    const redisCacheKey = `ip_recent_${realClientIpAddress}`
-    const currentCache = await redisClient.get(redisCacheKey)
-    if (currentCache) {
-      await redisClient.set(redisCacheKey, 'true', { ttl: 60 * 10 })
-    } else {
-      const location = await GeoIp.location(realClientIpAddress)
-      await Slack.send(`Someone visited the landing page -- IP: ${realClientIpAddress} (location: ${location.city}, ${location.region_code}, ${location.country_name}), hostname: ${req.hostname}, User-Agent: ${req.headers['user-agent']}`)
-      await redisClient.set(redisCacheKey, 'true', { ttl: 60 * 10 })
+    // Only try to send to Slack if the webhook URL for the channel is configured
+    if (config.slack.webhookUrl) {
+      let realClientIpAddress = (req.headers['x-forwarded-for'] || req.ip).split(',')
+      realClientIpAddress = realClientIpAddress[realClientIpAddress.length - 1]
+      const redisCacheKey = `ip_recent_${realClientIpAddress}`
+      const currentCache = await redisClient.get(redisCacheKey)
+      if (currentCache) {
+        await redisClient.set(redisCacheKey, 'true', { ttl: 60 * 10 })
+      } else {
+        const location = await GeoIp.location(realClientIpAddress)
+        await Slack.send(`Someone visited the landing page -- IP: ${realClientIpAddress} (location: ${location.city}, ${location.region_code}, ${location.country_name}), hostname: ${req.hostname}, User-Agent: ${req.headers['user-agent']}`)
+        await redisClient.set(redisCacheKey, 'true', { ttl: 60 * 10 })
+      }
     }
+
   } catch(err) {
     log.error("Error sending slack message", err)
   }

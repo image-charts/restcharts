@@ -6,6 +6,8 @@ html
     meta(http-equiv="X-UA-Compatible",content="IE=edge")
     meta(name="viewport",content="width=device-width")
 
+    script(src="https://use.fontawesome.com/028467eb54.js")
+
     link(href="/public/css/app.css",rel="stylesheet")
 
     title REST Charts
@@ -42,12 +44,15 @@ html
             div.row
               each example in type.examples
                 div.col-xs-12.col-md-4
-                  div.card.margin-vert-medium
+                  div.card.example.margin-vert-medium
                     - //div.card-img-top.chart-example(style="background-image:url('" + example.url + "')")
                     img.card-img-top.chart-example(src=example.url)
                     div.card-block
-                      div.card-title
-                        a(href=example.url,target="_blank")= example.name
-                      p.card-text
-                        div.d-flex.flex-column.justify-content-center.align-items-center
-                          code= example.url
+                      a(href=example.url,target="_blank")
+                        div.card-title
+                          div= example.name
+                        p.card-text
+                          div.d-flex.flex-column.justify-content-center.align-items-center
+                            code
+                              i.fa.fa-hand-pointer-o
+                              span.no-underline= ' ' + example.url

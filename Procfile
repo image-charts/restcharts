@@ -1,1 +1,1 @@
-web: node forever
+web: npm start

@@ -1,5 +1,11 @@
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
 
+.example {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 .margin-vert-medium {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -25,9 +31,17 @@
 
 .card {
   code {
+    max-width: 100%;
     font-size: 9px;
-    overflow-wrap: break-word;
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      word-break: break-all;
+      white-space: normal;
+      overflow: visible;
+    }
   }
 
   .card-block {

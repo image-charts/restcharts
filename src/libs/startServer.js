@@ -3,6 +3,7 @@ import path from 'path'
 import fs from 'fs'
 import bodyParser from 'body-parser'
 import express from 'express'
+import cors from 'cors'
 import throng from 'throng'
 import bunyan from 'bunyan'
 import Routes from '../libs/Routes'
@@ -22,6 +23,9 @@ export default async function startApp() {
 
     app.use(bodyParser.urlencoded({extended: true, limit: '1mb'}))
     app.use(bodyParser.json({limit: '1mb'}))
+
+    // All routes should be CORS enabled
+    app.use(cors())
 
     //static files
     app.use('/public', express.static(path.join(__dirname, '..', '/public')))
