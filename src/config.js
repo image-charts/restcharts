@@ -16,6 +16,10 @@ export default {
     webhookUrl: process.env.SLACK_WEBHOOK_URL
   },
 
+  redis: {
+    url: process.env.REDIS_URL || 'redis://localhost:6379'
+  },
+
   logger: {
     options: {
       name:   appName,
