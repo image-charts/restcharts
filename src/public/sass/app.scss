@@ -37,6 +37,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
+    &.wrap-always {
+      white-space: normal;
+      word-break: break-all;
+    }
+
     &:hover {
       word-break: break-all;
       white-space: normal;
@@ -57,5 +62,9 @@
   &.card-img-top {
     max-height: 150px;
     background: #f8f8f8;
+  }
+
+  &.large-img-top {
+    max-height: 400px;
   }
 }

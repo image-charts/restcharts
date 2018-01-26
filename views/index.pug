@@ -12,16 +12,16 @@ html
 
     title REST Charts
   body
-    div.container
+    div.container.small-width
       div.text-center.header
         h1 REST Charts
         div
           small Generate charts easier than ever!
 
-      hr.small-width
+      hr
 
-      div.container.text-center.small-width
-        h2 What is it?
+      div.text-center
+        h3 What is REST Charts?
         div.
           REST Charts lets you generate dynamic charts through a REST-like URL
           and query string parameters that includes information such
@@ -30,25 +30,40 @@ html
           div.card-block
             div As easy as...
             div
-              code(style="font-size:14px;")
+              code.wrap-always(style="font-size:14px;")
                 a(href=data.host + '/chart/column?data=5,1,2,9,8,3,6')= data.host + '/chart/column?data=5,1,2,9,8,3,6'
 
-      hr.small-width
+      hr
+
+      div
+        h2.text-center(id='Parameters') API
+        h5 Basic Route Format
+        div
+          div
+            code GET https://www.restcharts.com/chart/:type[?parameters]
+          div or
+          div
+            code POST https://www.restcharts.com/chart/:type -d [parameters]
+        div.margin-vert-large.text-center
+          strong
+            i Complete API documentation coming soon...
+
+      hr
 
       h2.text-center(id='Examples') Examples
-      div.container.small-width
+      div
         each type in data.types
           div
             h3(id=type.name)
               a(href='#' + type.name)= type.name
             div.row
               each example in type.examples
-                div.col-xs-12.col-md-4
+                div.col-xs-12(class=(type.name == 'Advanced Configuration') ? 'col-md-12' : 'col-md-4')
                   div.card.example.margin-vert-medium
                     - //div.card-img-top.chart-example(style="background-image:url('" + example.url + "')")
-                    img.card-img-top.chart-example(src=example.url)
+                    img.card-img-top.chart-example(class=(type.name == 'Advanced Configuration') ? 'large-img-top' : '',src=example.url)
                     div.card-block
-                      a(href=example.url,target="_blank")
+                      a(href=example.url)
                         div.card-title
                           div= example.name
                         p.card-text
