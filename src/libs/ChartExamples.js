@@ -1,6 +1,6 @@
 import config from '../config'
 
-const baseUrl = config.server.host
+const baseUrl = config.server.api_host
 
 export default [
   {
