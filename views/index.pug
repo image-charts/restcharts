@@ -38,12 +38,19 @@ html
       div
         h2.text-center(id='Parameters') API
         h5 Basic Route Format
+        div.row
+          div.col-10.offset-1
+            div(style="font-size:10px;margin-bottom:10px")
+              i.
+                The following is an example with curl, but you can use any
+                method of making an HTTP request. Also, CORS is enabled for
+                making requests from the browser.
         div
           div
-            code GET https://www.restcharts.com/chart/:type[?parameters]
+            code= '$ curl -X GET ' + data.api_host + '/chart/:type[?parameters]'
           div or
           div
-            code POST https://www.restcharts.com/chart/:type -d [parameters]
+            code= '$ curl -X POST ' + data.api_host + '/chart/:type -d \'[JSON parameters]\''
         div.margin-vert-large.text-center
           strong
             i Complete API documentation coming soon...
