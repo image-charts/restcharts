@@ -12,6 +12,7 @@ export default async function Index(req, res) {
   try {
     res.render('index', {
       data: {
+        api_host: config.server.api_host,
         host: config.server.host,
         types: ChartExamples
       }

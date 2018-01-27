@@ -1,6 +1,7 @@
 # ignore
 *.log
 *.rdb
+*.serverless
 *.DS_Store
 /certs
 /logs
@@ -12,4 +13,7 @@
 /tasks
 /public
 /config.js
+/LambdaHandlers.js
+serverless-params.json
+env.yml
 *.env
