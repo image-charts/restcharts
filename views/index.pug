@@ -8,24 +8,30 @@ html
 
     script(src="https://use.fontawesome.com/028467eb54.js")
 
+    link(rel="stylesheet",href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css")
     link(href="/public/css/app.css",rel="stylesheet")
 
     title REST Charts
   body
     div.container.small-width
       div.text-center.header
+        div.margin-vert-large
+          a(href="https://github.com/whatl3y/restcharts")
+            i(style="font-size:4em").devicon-github-plain
         h1 REST Charts
         div
-          small Generate charts easier than ever!
+          small Generate charts easier than ever! Powered by&nbsp;
+            a(href="https://www.highcharts.com/") Highcharts
 
       hr
 
       div.text-center
         h3 What is REST Charts?
         div.
-          REST Charts lets you generate dynamic charts through a REST-like URL
-          and query string parameters that includes information such
-          as the data, chart colors, area opacity, etc.
+          REST Charts lets you generate dynamic Highcharts charts through
+          a REST-like API, with the URL &amp; query string params providing
+          information such as the data to be charted, chart colors,
+          area opacity, etc.
         div.card.margin-vert-xlarge
           div.card-block
             div As easy as...
@@ -53,7 +59,8 @@ html
             code= '$ curl -X POST ' + data.api_host + '/chart/:type -d \'[JSON parameters]\''
         div.margin-vert-large.text-center
           strong
-            i Complete API documentation coming soon...
+            a(href="https://github.com/whatl3y/restcharts").
+              Complete API documentation available on github
 
       hr
 
