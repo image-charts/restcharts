@@ -31,7 +31,7 @@ $ curl -X POST https://api.restcharts.com/chart/:type -d [JSON parameters]
 #### Body/query string parameters
 
 - `data`: Comma-delimited list of your data that needs to be charted.
-If the `raw` config option (see [Advanced](#advanced) below) is not provided or it is but
+If the `raw` config option (see [Advanced](#advanced-params) below) is not provided or it is but
 a `series` array is not provided, this is a *required* parameter.
 - `color`: The color of the line/bar/column/etc. of the chart.
 - `bg`: The background color of (default: transparent, i.e. `rgba(0, 0, 0, 0)`)
