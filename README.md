@@ -22,7 +22,7 @@ $ curl -X POST https://api.restcharts.com/chart/:type -d [JSON parameters]
 
 ## Parameters
 
-### Simple
+### Simple Params
 
 #### URL parameters
 
@@ -31,7 +31,7 @@ $ curl -X POST https://api.restcharts.com/chart/:type -d [JSON parameters]
 #### Body/query string parameters
 
 - `data`: Comma-delimited list of your data that needs to be charted.
-If the `raw` config option (see [Advanced](#Advanced) below) is not provided or it is but
+If the `raw` config option (see [Advanced](#advanced) below) is not provided or it is but
 a `series` array is not provided, this is a *required* parameter.
 - `color`: The color of the line/bar/column/etc. of the chart.
 - `bg`: The background color of (default: transparent, i.e. `rgba(0, 0, 0, 0)`)
@@ -40,7 +40,7 @@ a `series` array is not provided, this is a *required* parameter.
 - `opacity`: If an area chart (or variation), will be the opacity of the area.
 - `linewidth`: If a line or spline chart, the line width of the lines.
 
-### Advanced
+### Advanced Params
 
 If you want to generate a chart using the [advanced configuration](https://api.highcharts.com/highcharts/) provided by Highcharts
 (the relevant options are the ones in the `Highcharts.chart()` method),
