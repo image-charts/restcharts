@@ -53,14 +53,14 @@ html
                 making requests from the browser.
         div
           div
-            code= '$ curl -X GET ' + data.api_host + '/chart/:type[?parameters]'
+            code= '$ curl -X GET ' + data.api_host + '/chart/:type[?parameter1=val1&parameter2=val2&...]'
           div or
           div
-            code= '$ curl -X POST ' + data.api_host + '/chart/:type -d \'[JSON parameters]\''
+            code= '$ curl -X POST ' + data.api_host + '/chart/:type -d \'[{"parameter1": "val1", "parameter2": "val2", ...}]\''
         div.margin-vert-large.text-center
           strong
             a(href="https://github.com/whatl3y/restcharts").
-              Complete API documentation available on github
+              Complete API/parameter documentation available on github
 
       hr
 
