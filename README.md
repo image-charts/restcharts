@@ -17,7 +17,7 @@ $ curl -X GET https://api.restcharts.com/chart/:type[?parameter1=val1&parameter2
 or
 
 ```sh
-$ curl -X POST https://api.restcharts.com/chart/:type -d [JSON parameters]
+$ curl -X POST https://api.restcharts.com/chart/:type -d {"parameter1": "val1", "parameter2": "val2", ...}
 ```
 
 ## Parameters
