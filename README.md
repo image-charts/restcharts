@@ -42,11 +42,11 @@ is not provided or it is but a `series` array within the raw config is not provi
 
 ### Advanced Params
 
-If you want to generate a chart using the [advanced configuration](https://api.highcharts.com/highcharts/) provided by Highcharts
+If you want to generate a chart using [any Highcharts options](https://api.highcharts.com/highcharts/)
 (the relevant options are the ones in the `Highcharts.chart()` method),
 you can provide a raw config object with any available options you'd like
 to provide for the chart type desired. Any configuration you have in the raw
-parameter will override the default options.
+parameter will override the default options. Examples can be seen [here](https://www.restcharts.com/#Advanced Configuration).
 
 - `raw`: The JSON serialized config object. If the `data` parameter is not
 provided, a `series` array of data needs to be included here.
