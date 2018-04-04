@@ -4,7 +4,7 @@
   "description": "Generate charts easily through a simple REST API.",
   "main": "forever.js",
   "engines": {
-    "node": "8.9.4"
+    "node": "8.10.0"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
     "@slack/client": "^3.13.0",
     "async": "^2.6.0",
     "babel-core": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0-alpha.6",
@@ -47,6 +46,7 @@
     "redis": "^2.8.0",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.5",
+    "serverless": "^1.26.1",
     "throng": "^4.0.0"
   },
   "author": "Lance Whatley <whatl3y@gmail.com>",
