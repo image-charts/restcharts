@@ -18,7 +18,8 @@ const responses = {
     return {
       statusCode: code,
       headers: responseHeaders,
-      body: buffer
+      body: buffer.toString('base64'),
+      isBase64Encoded: true
     }
   },
   error: (error) => {
