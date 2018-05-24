@@ -1,5 +1,5 @@
 {
-  "name": "restcharts",
+  "name": "RESTcharts",
   "version": "0.1.0",
   "description": "Generate charts easily through a simple REST API.",
   "main": "forever.js",
@@ -21,7 +21,6 @@
     "mocha": "^3.1.1"
   },
   "dependencies": {
-    "@slack/client": "^3.13.0",
     "async": "^2.6.0",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -43,7 +42,6 @@
     "newrelic": "^1.40.0",
     "object-assign-deep": "^0.3.1",
     "pug": "^2.0.0-rc.3",
-    "redis": "^2.8.0",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.5",
     "serverless": "^1.26.1",

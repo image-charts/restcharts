@@ -1,4 +1,4 @@
-const appName = process.env.APP_NAME || "REST Charts"
+const appName = process.env.APP_NAME || "RESTCharts"
 
 export default {
   app: {
@@ -11,14 +11,6 @@ export default {
     concurrency:    parseInt(process.env.WEB_CONCURRENCY || 1),
     host:           process.env.HOSTNAME || "http://localhost:8080",
     api_host:       process.env.API_HOSTNAME || "http://localhost:8080"
-  },
-
-  slack: {
-    webhookUrl: process.env.SLACK_WEBHOOK_URL
-  },
-
-  redis: {
-    url: process.env.REDIS_URL || 'redis://localhost:6379'
   },
 
   logger: {
