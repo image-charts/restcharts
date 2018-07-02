@@ -34,12 +34,8 @@ functions:
                     "opacity": "$input.params('opacity')",
                     "linewidth": "$input.params('linewidth')"
                   }
-          cors:
-            origins:
-              - '*'
+          cors: true
       - http:
           path: /chart/{type}
           method: post
-          cors:
-            origins:
-              - '*'
+          cors: true

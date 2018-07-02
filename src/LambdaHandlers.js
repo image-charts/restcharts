@@ -1,5 +1,5 @@
 import 'babel-polyfill'
-import chartRoute from './routes/0.._chart_[colon]type..all.js'
+import Chart from './routes/0.._chart_[colon]type..all.js'
 
 /**
  * Base response HTTP headers
@@ -18,7 +18,7 @@ const responses = {
     return {
       statusCode: code,
       headers: responseHeaders,
-      body: buffer.toString('base64'),
+      body: buffer,
       isBase64Encoded: true
     }
   },
@@ -37,15 +37,13 @@ const responses = {
  */
 // export default {
 module.exports = {
-  async getChart(event, context, callback) {
+  async getChart(event) {
     try {
-      context.callbackWaitsForEmptyEventLoop = false
-
       let overrideStatusCode = null
       let overrideResponse = {}
       let imageBuffer = null
 
-      await chartRoute({
+      await Chart({
         params: { type: event.type },
         body: event
       }, {
@@ -71,12 +69,12 @@ module.exports = {
       })
 
       if (overrideStatusCode && overrideStatusCode >= 400)
-        return callback(null, responses.error({ code: overrideStatusCode, error: overrideResponse.error || overrideResponse }))
+        return responses.error({ code: overrideStatusCode, error: overrideResponse.error || overrideResponse })
 
-      callback(null, responses.success(imageBuffer))
+      return responses.success(imageBuffer)
 
     } catch(err) {
-      callback(null, responses.error({ code: 500, error: err }))
+      return responses.error({ code: 500, error: err })
     }
   }
 }
