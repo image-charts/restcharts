@@ -9,7 +9,7 @@ export default function Chart(req, res) {
   return new Promise((resolve, reject) => {
     try {
       const routeParams = req.params
-      const body        = req.query || req.body || {}
+      const body        = req.query || req.queryStringParameters || req.body || {}
       const chartType   = routeParams.type || body.type
       const rawConfig   = jsonParseFallback(body.raw || {}, {})
       const chartData   = (body.data || '').split(',')
