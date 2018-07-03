@@ -1,4 +1,4 @@
-# [REST Charts](https://www.restcharts.com)
+# [RESTCharts](https://www.restcharts.com)
 
 Generate PNG images of charts easily through a simple REST-like API.
 
@@ -115,4 +115,6 @@ $ # To build the distribution files for the server
 $ gulp build
 $ # To run the dev server via nodemon
 $ npm run dev
+$ # To run tests
+$ npm test
 ```
