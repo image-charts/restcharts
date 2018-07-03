@@ -1,6 +1,6 @@
 {
   "name": "RESTcharts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate charts easily through a simple REST API.",
   "main": "forever.js",
   "engines": {
