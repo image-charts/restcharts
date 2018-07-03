@@ -10,10 +10,17 @@ provider:
   runtime: nodejs8.10
   region: us-east-1
   memorySize: 512
-  timeout: 5
+  timeout: 10
   environment: ${file(env.yml):${self:provider.stage}}
 
 functions:
+  home:
+    handler: LambdaHandlers.home
+    events:
+      - http:
+          path: /
+          method: get
+
   # Generate & Deliver Chart ---------------------------------------------------
   getChart:
     handler: LambdaHandlers.getChart
@@ -21,19 +28,6 @@ functions:
       - http:
           path: /chart/{type}
           method: get
-          request:
-              template:
-                application/json: >
-                  {
-                    "data": "$input.params('data')",
-                    "raw": "$input.params('raw')",
-                    "color": "$input.params('color')",
-                    "bg": "$input.params('bg')",
-                    "height": "$input.params('height')",
-                    "width": "$input.params('width')",
-                    "opacity": "$input.params('opacity')",
-                    "linewidth": "$input.params('linewidth')"
-                  }
           cors: true
       - http:
           path: /chart/{type}

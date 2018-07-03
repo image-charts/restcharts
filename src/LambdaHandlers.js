@@ -1,5 +1,7 @@
-import 'babel-polyfill'
+import path from 'path'
+import pug from 'pug'
 import Chart from './routes/0.._chart_[colon]type..all.js'
+import Index from './routes/999.._[star]..get.js'
 
 /**
  * Base response HTTP headers
@@ -13,18 +15,19 @@ const responseHeaders = {
 /**
  * HTTP response templates
  */
-const responses = {
+const chartResponses = {
   success: (buffer=null, code=200) => {
     return {
       statusCode: code,
       headers: responseHeaders,
-      body: buffer
+      body: buffer.toString('base64'),
+      isBase64Encoded: true
     }
   },
   error: (error) => {
     return {
       statusCode: error.code || 500,
-      headers: responseHeaders,
+      headers: Object.assign(responseHeaders, { 'Content-Type': 'application/json' }),
       body: JSON.stringify(error)
     }
   }
@@ -36,6 +39,21 @@ const responses = {
  */
 // export default {
 module.exports = {
+  async home(event) {
+    let html
+    await Index({}, {
+      render(view, obj) {
+        html = pug.renderFile(path.join('views', `${view}.pug`), obj)
+      }
+    })
+
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'text/html' },
+      body: html
+    }
+  },
+
   async getChart(event) {
     try {
       let overrideStatusCode = null
@@ -70,12 +88,12 @@ module.exports = {
       })
 
       if (overrideStatusCode && overrideStatusCode >= 400)
-        return responses.error({ code: overrideStatusCode, error: overrideResponse.error || overrideResponse })
+        return chartResponses.error({ code: overrideStatusCode, error: overrideResponse.error || overrideResponse })
 
-      return responses.success(imageBuffer)
+      return chartResponses.success(imageBuffer)
 
     } catch(err) {
-      return responses.error({ code: 500, error: err })
+      return chartResponses.error({ code: 500, error: err })
     }
   }
 }
