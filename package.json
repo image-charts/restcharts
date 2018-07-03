@@ -1,5 +1,5 @@
 {
-  "name": "RESTcharts",
+  "name": "restcharts",
   "version": "0.2.0",
   "description": "Generate charts easily through a simple REST API.",
   "main": "forever.js",
