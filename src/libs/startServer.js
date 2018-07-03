@@ -30,6 +30,12 @@ export default async function startApp() {
     //static files
     app.use('/public', express.static(path.join(__dirname, '..', '/public')))
 
+    // Return the Let's Encrypt certbot response:
+    const letsEncryptReponse = process.env.CERTBOT_RESPONSE
+    app.get('/.well-known/acme-challenge/:content', function(req, res) {
+      res.send(letsEncryptReponse)
+    })
+
     // initialize routes object to be used to bind express routes
     const aRoutes = fs.readdirSync('routes').filter(file => fs.lstatSync(path.join('routes', file)).isFile())
     let oRoutes = {}
