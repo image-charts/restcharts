@@ -42,9 +42,11 @@ module.exports = {
       let overrideResponse = {}
       let imageBuffer = null
 
+      let { type, body } = parseApiGatewayEvent(event)
+
       await Chart({
-        params: { type: event.type },
-        body: event
+        params: { type },
+        body
       }, {
         status(code) {
           overrideStatusCode = code
@@ -76,4 +78,15 @@ module.exports = {
       return responses.error({ code: 500, error: err })
     }
   }
+}
+
+function parseApiGatewayEvent(ev) {
+  const type = ev.pathParameters.type
+  let body
+  if (ev.queryStringParameters)
+    body = ev.queryStringParameters
+  if (ev.body)
+    body = ev.body
+
+  return { type, body }
 }
