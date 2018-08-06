@@ -23,4 +23,4 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./public/css/'))
 })
 
-gulp.task('build', [ 'src', 'styles' ], function() {})
+gulp.task('build', gulp.parallel('src', 'styles'))
