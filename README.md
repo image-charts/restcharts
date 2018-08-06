@@ -1,4 +1,4 @@
-# [RESTCharts](https://www.restcharts.com)
+# [RESTCharts](https://api.restcharts.com)
 
 Generate PNG images of charts easily through a simple REST-like API.
 
@@ -46,7 +46,7 @@ If you want to generate a chart using [any Highcharts options](https://api.highc
 (the relevant options are the ones in the `Highcharts.chart()` method),
 you can provide a raw config object with any available options you'd like
 to provide for the chart type desired. Any configuration you have in the raw
-parameter will override the default options. Examples can be seen [here](https://www.restcharts.com/#Advanced%20Configuration).
+parameter will override the default options. Examples can be seen [here](https://api.restcharts.com/#Advanced%20Configuration).
 
 - `raw`: The JSON serialized config object. If the `data` parameter is not
 provided, a `series` array of data needs to be included here.
