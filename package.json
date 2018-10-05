@@ -45,8 +45,9 @@
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",
     "serverless": "^1.26.1",
+    "serverless-http": "^1.6.0",
     "throng": "^4.0.0"
   },
-  "author": "Lance Whatley <whatl3y@gmail.com>",
+  "author": "Lance Whatley <whatl3y@gmail.com> (https://www.lance.to)",
   "license": "MIT"
 }

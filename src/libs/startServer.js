@@ -13,9 +13,9 @@ const app         = express()
 const httpServer  = http.Server(app)
 const log         = bunyan.createLogger(config.logger.options)
 
-export default async function startApp() {
+export default function startApp(shouldListenOnPort=true) {
   try {
-    const routes = await Routes.get()
+    const routes = Routes.get()
 
     //view engine setup
     app.set('views', path.join(__dirname, '..', 'views'))
@@ -45,7 +45,10 @@ export default async function startApp() {
       }
     })
 
-    httpServer.listen(config.server.port, () => log.info(`listening on *: ${config.server.port}`))
+    if (shouldListenOnPort)
+      httpServer.listen(config.server.port, () => log.info(`listening on *: ${config.server.port}`))
+
+    return app
 
   } catch(err) {
     log.error("Error starting server", err)
