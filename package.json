@@ -14,16 +14,16 @@
     "dev": "nodemon --exec 'nf start'",
     "start": "node forever",
     "postinstall": "gulp build",
-    "test": "mocha --require babel-core/register --recursive './src/**/*.spec.js'"
+    "test": "mocha --require @babel/core/register --recursive './src/**/*.spec.js'"
   },
   "devDependencies": {
     "foreman": "^3.0.1",
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
     "async": "^2.6.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0-alpha.6",
     "bunyan": "1.5.1",
