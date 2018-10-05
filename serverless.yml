@@ -18,6 +18,6 @@ functions:
     handler: LambdaHandlers.handler
     events:
       - http:
-          path: /{any+}
+          path: {any+}
           method: ANY
           cors: true
