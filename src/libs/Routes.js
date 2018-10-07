@@ -1,14 +1,11 @@
 import fs from 'fs'
-import util from 'util'
 import path from 'path'
-
-const readdir = util.promisify(fs.readdir)
 
 export default {
   _path: 'routes',
 
-  async get() {
-    const files       = await readdir(this._path)
+  get() {
+    const files       = fs.readdirSync(this._path)
     const routeFiles  = files.filter(file => fs.lstatSync(path.join(this._path, file)).isFile())
     const routes = routeFiles.map(file => {
       const routeInfo = file.replace(/\.js/g,"").replace(/_/g,"/").replace(/\[star\]/g,"*").replace(/\[colon\]/g,":").split("..")
@@ -20,7 +17,8 @@ export default {
         verb: routeVerb,
         path: routePath,
         order: routeOrder,
-        file: file
+        file: file,
+        handler: require(path.join('..', this._path, file)).default
       }
     })
 

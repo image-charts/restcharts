@@ -1,15 +1,20 @@
 import fs from 'fs'
+import path from 'path'
+import util from 'util'
 import exporter from 'highcharts-export-server'
 import ChartHelpers, { jsonParseFallback } from '../libs/ChartHelpers'
+import ImageHelpers from '../libs/ImageHelpers'
+
+const readFile = util.promisify(fs.readFile)
 
 //Set up a pool of PhantomJS workers
 exporter.initPool()
 
 export default function Chart(req, res) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
       const routeParams = req.params
-      const body        = req.query || req.body || {}
+      const body        = ((req.method.toLowerCase() == 'post') ? (req.body || req.query) : (req.query || req.body)) || {}
       const chartType   = routeParams.type || body.type
       const rawConfig   = jsonParseFallback(body.raw || {}, {})
       const chartData   = (body.data || '').split(',')
@@ -19,20 +24,18 @@ export default function Chart(req, res) {
       if (chartData.length <= 1 && !rawConfig.series)
         return res.status(400).json({ status: 400, error: `Please pass valid data. If you passed a 'raw' param with data populated in the 'series' key, there is likely something wrong with the JSON config you passed.` })
 
-      const finalConfig = ChartHelpers.getConfig(chartData, Object.assign(body, { type: chartType }), rawConfig)
-      exporter.export({ type: 'png', options: finalConfig}, function(err, response) {
-        if (err) {
-          res.status(500).json({ status: 500, error: err })
-          return reject(err)
-        }
+      const finalConfig   = ChartHelpers.getConfig(chartData, Object.assign(body, { type: chartType }), rawConfig)
+      const imageBuffer   = await ChartHelpers.createChart(exporter, finalConfig)
 
-        const imageBase64 = response.data
-        const imageBuffer = Buffer.from(imageBase64, 'base64')
+      const helpers       = new ImageHelpers(imageBuffer)
+      const [ wid, hei ]  = await helpers.dimensions(imageBuffer)
+      const watermark     = await helpers.open(await readFile(path.join('.', 'public', 'assets', 'restcharts_black_trans_20_sm.png')))
+      const newImg        = await helpers.paste(watermark, wid - 110 - 10, 10)
+      const finalImgBuff  = await helpers.toBuffer(newImg)
 
-        res.setHeader('Content-Type', 'image/png')
-        res.send(imageBuffer)
-        resolve(imageBuffer)
-      })
+      res.setHeader('Content-Type', 'image/png')
+      res.send(finalImgBuff)
+      resolve(finalImgBuff)
 
     } catch(err) {
       res.status(500).json({ status: 500, error: err })
