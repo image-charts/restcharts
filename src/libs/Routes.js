@@ -17,7 +17,8 @@ export default {
         verb: routeVerb,
         path: routePath,
         order: routeOrder,
-        file: file
+        file: file,
+        handler: require(path.join('..', this._path, file)).default
       }
     })
 

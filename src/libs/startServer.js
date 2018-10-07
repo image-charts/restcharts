@@ -30,15 +30,10 @@ export default function startApp(shouldListenOnPort=true) {
     //static files
     app.use('/public', express.static(path.join(__dirname, '..', '/public')))
 
-    // initialize routes object to be used to bind express routes
-    const aRoutes = fs.readdirSync('routes').filter(file => fs.lstatSync(path.join('routes', file)).isFile())
-    let oRoutes = {}
-    aRoutes.forEach(r => oRoutes[r] = require(path.join('..', 'routes', r)))
-
     //setup route handlers in the express app
     routes.forEach(route => {
       try {
-        app[route.verb.toLowerCase()](route.path, oRoutes[route.file].default)
+        app[route.verb.toLowerCase()](route.path, route.handler)
         log.debug(`Successfully bound route to express; method: ${route.verb}; path: ${route.path}`)
       } catch(err) {
         log.error(err, `Error binding route to express; method: ${route.verb}; path: ${route.path}`)

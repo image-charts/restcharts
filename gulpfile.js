@@ -5,6 +5,11 @@ const concat = require('gulp-concat')
 const minify_css = require('gulp-clean-css')
 const sass = require('gulp-sass')
 
+gulp.task('assets', function() {
+  return gulp.src("./src/public/assets/**/*")
+    .pipe(gulp.dest("./public/assets/"))
+})
+
 gulp.task('src', function() {
   return gulp.src("./src/**/*.js")
     .pipe(plumber())
@@ -23,4 +28,4 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./public/css/'))
 })
 
-gulp.task('build', gulp.parallel('src', 'styles'))
+gulp.task('build', gulp.parallel('assets', 'src', 'styles'))

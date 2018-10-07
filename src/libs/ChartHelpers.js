@@ -47,6 +47,19 @@ export default {
         data: data.map(d => ({ y: parseVal(d, 'integer'), marker: { enabled: false }}))
       }]
     }, rawConfig)
+  },
+
+  async createChart(exporter, config) {
+    return new Promise((resolve, reject) => {
+      exporter.export({ type: 'png', options: config }, function(err, response) {
+        if (err)
+          return reject(err)
+
+        const imageBase64 = response.data
+        const imageBuffer = Buffer.from(imageBase64, 'base64')
+        resolve(imageBuffer)
+      })
+    })
   }
 }
 
