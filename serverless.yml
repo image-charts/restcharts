@@ -7,7 +7,7 @@ service: restcharts
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   region: us-east-1
   memorySize: 512
   timeout: 10

@@ -1,5 +1,4 @@
 import bunyan from 'bunyan'
-import GeoIp from '../libs/GeoIp'
 import ChartExamples from '../libs/ChartExamples'
 import config from '../config'
 

@@ -2,7 +2,6 @@
  * to listen for HTTP requests
  */
 
-// import newrelic from 'newrelic'
 import throng from 'throng'
 import startServer from '../libs/startServer'
 import config from '../config'
