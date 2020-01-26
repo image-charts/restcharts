@@ -118,3 +118,15 @@ $ npm run dev
 $ # To run tests
 $ npm test
 ```
+
+### AWS Lambda
+
+As of 2020-01-26, AWS Lambda's Runtime image lacks a dependency for PhantomJS to
+work which is what highcharts-export-server uses under the hood ([see the error](https://stackoverflow.com/questions/45129742/error-while-loading-shared-libraries-libfontconfig-so-1-on-cent-os)). To
+work around this issue follow these instructions before deploying
+to AWS Lambda.
+
+Don't forget about setting the `FONTCONFIG_PATH` environment to `/var/task/lib`
+in your Lambda environment variables.
+
+https://github.com/tarkal/highchart-lambda-export-server#building-from-scratch
