@@ -1,5 +1,5 @@
 
-# :warning: DEPRECATED: use https://www.image-charts.com/ instead 👌
+# :warning: DEPRECATED :warning: Use **[Image-Charts](https://www.image-charts.com/)** instead 👍
 
 ------------------------------
 
