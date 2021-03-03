@@ -42,7 +42,7 @@
     "minimist": "^1.2.0",
     "moment": "^2.24.0",
     "object-assign-deep": "^0.4.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.8",
     "serverless": "^1.61.3",
